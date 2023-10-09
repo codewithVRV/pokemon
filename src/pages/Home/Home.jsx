@@ -1,38 +1,18 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import PokeCard from "../../component/PokeCard/PokeCar";
+import './Home.css'
+import usePokemonData from "../../component/hooks/usePokemonData";
 
 function Home () {
 
-    const [pokeData, setPokeData] = useState([])
-    const [singleData, setSingleData] = useState([])
-
-    async function downloadAllPokemon() {
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon')
-        setPokeData(response.data.results) // first method
-        
-
-    }
-    async function singlePokemon () {
-        // urls is an array which contains multiple url inside this array
-        // let urls = ["www.google.com", "something.com", "facebook.com"] like this
-        const urls = pokeData.map((data) => data.url)
-        const response = await axios.all((urls.map(url => axios.get(url))))
-        setSingleData([...response]) // second method
-    }
-    // console.log("single", singleData)
-
-
-    useEffect(() => {
-        downloadAllPokemon()
-        singlePokemon()
-    }, [])
+    const [singleData] = usePokemonData()
     return (
         <>
-            {singleData.length > 0  && singleData.map((data) => <PokeCard 
-                                        key={data.data.id} name={data.data.name}
-                                        poster={data.data.sprites.front_default}
-            />)}
+            <div className="all-pokemon-wrapper">
+                {singleData.length > 0  && singleData.map((data) => <PokeCard 
+                                            key={data.data.id} name={data.data.name}
+                                            poster={data.data.sprites.front_default}
+                />)}
+            </div>
         </>
     )
 }
