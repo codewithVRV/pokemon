@@ -1,10 +1,11 @@
 
 import './App.css'
+import MainRouting from './routing/MainRouting'
 
 function App() {
 
   return (
-    <h1>Pokemon</h1>
+    <MainRouting />
   )
 }
 
