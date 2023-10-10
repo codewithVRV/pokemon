@@ -1,6 +1,6 @@
 .pokemon-wrapper {
     display:  flex;
-    gap: 10rem;
+    justify-content: center;
 }
 
 .p-img {
