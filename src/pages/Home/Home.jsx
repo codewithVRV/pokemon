@@ -7,10 +7,12 @@ function Home () {
     const [singleData] = usePokemonData()
     return (
         <>
+
             <div className="all-pokemon-wrapper">
                 {singleData.length > 0  && singleData.map((data) => <PokeCard 
                                             key={data.data.id} name={data.data.name}
                                             poster={data.data.sprites.front_default}
+                                            id={data.data.id}
                 />)}
             </div>
         </>

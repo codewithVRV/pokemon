@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import './PokeDetails.css'
 
 
@@ -22,6 +22,7 @@ function PokeDetails () {
     
     return (
         <>
+            <Link to="/"><h1 style={{textAlign: "center"}}>Poked-Ex</h1></Link>
             { card && <div className="pokemon-wrapper">
                 <div className="p-img">
                 <img src={card.sprites.front_default} alt="" />

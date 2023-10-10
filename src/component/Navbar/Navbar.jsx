@@ -1,18 +1,36 @@
 import { useNavigate } from 'react-router-dom';
-import usePokemonData from '../hooks/usePokemonData';
 import './Navbar.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import useDebounce from '../hooks/useDebounce';
+// import useSingleData from '../hooks/useSingleData';
 
 function Navbar () {
+
+    
     const [isAutoCompleteVisible, setIsAutoCompleteVisible] = useState(false)
-    const [searchTerm, setSearchTerm] = useState("")
-    const [singleData] = usePokemonData()
+    let [searchTerm, setSearchTerm] = useState("")
+    const [singleData, setSingleData] = useState([])
+
     const navigator = useNavigate()
+
     function handleInput (id) {
-        console.log("Id is", id)
         navigator(`poke/${id}`)
     }
-    // console.log("searchTerm", searchTerm)
+    console.log("single data is", singleData)
+    
+    async function downloadByName () {
+        console.log("search Term is", searchTerm)
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${(searchTerm) ? searchTerm : "charmander"}`)
+        console.log("response of search card", response)
+        setSingleData(response.data)
+    }
+
+    useEffect (() => {
+        downloadByName ()
+
+    }, [searchTerm])
+
     return (
         <>  
             <div className="input-wrapper">
@@ -20,11 +38,12 @@ function Navbar () {
                     <input type="text" placeholder="search here..." 
                         onFocus={() => setIsAutoCompleteVisible(true)}
                         onBlur={() => setIsAutoCompleteVisible(false)}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onChange={useDebounce((e) => setSearchTerm(e.target.value))}
                     />
                     <div className="auto-result" style={{display: (isAutoCompleteVisible) ? 'block': 'none'}}>
-                        {singleData.length > 0 && singleData.map((data) => <p key={data.data.id} onMouseDown={() => handleInput(data.data.id)} >{data.data.name}</p>)}
-                        
+                        {singleData && <p key={singleData.id}
+                         onMouseDown={() => handleInput(singleData.id)} >{singleData.name}</p>}
+                        <p>Search Term is {searchTerm}</p>
                     </div>
                 </div>
                 
