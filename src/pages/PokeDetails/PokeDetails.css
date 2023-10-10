@@ -1,0 +1,14 @@
+.pokemon-wrapper {
+    display:  flex;
+    gap: 10rem;
+}
+
+.p-img {
+    height: 200px;
+    width: 200px;
+}
+
+.p-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
