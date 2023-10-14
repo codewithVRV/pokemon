@@ -10,11 +10,10 @@ function PokeDetails () {
 
     async function downloadSingleData () {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        console.log('response of movie details data', response.data)
+        // console.log('response of movie details data', response.data)
         setCard(response.data)
     }
-    // console.log("card", card)
-    // console.log(typeof card)
+   
 
     useEffect(() => {
         downloadSingleData()
@@ -25,7 +24,7 @@ function PokeDetails () {
             <Link to="/"><h1 style={{textAlign: "center"}}>Poked-Ex</h1></Link>
             { card && <div className="pokemon-wrapper">
                 <div className="p-img">
-                <img src={card.sprites.front_default} alt="" />
+                    <img src={card.sprites.other.dream_world.front_default} alt="" />
                 </div>
                 <div className="p-details">
                     <p><b>Name:-</b>   {(!card.name) ? "Not found" : card.name}</p>
