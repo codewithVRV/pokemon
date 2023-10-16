@@ -52,7 +52,7 @@ function Home () {
     return (
         <>
             <div className="button-wrapper">
-                {gotoPrePage && <button className="button" onClick={gotoPrePage} >Pre</button>}
+                {prePage && <button className="button" onClick={gotoPrePage} >Pre</button>}
                 <button className="button" onClick={gotoNextPage} >Next</button>
             </div>
 
