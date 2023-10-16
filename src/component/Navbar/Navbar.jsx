@@ -34,7 +34,7 @@ function Navbar () {
                     <input type="text" placeholder="search here..." 
                         onFocus={() => setIsAutoCompleteVisible(true)}
                         onBlur={() => setIsAutoCompleteVisible(false)}
-                        onChange={useDebounce((e) => setSearchTerm(e.target.value))}
+                        onChange={useDebounce((e) => setSearchTerm(e.target.value.toLowerCase()))}
                     />
                     <div className="auto-result" style={{display: (isAutoCompleteVisible) ? 'block': 'none'}}>
                         {singleData && <p key={singleData.id}
