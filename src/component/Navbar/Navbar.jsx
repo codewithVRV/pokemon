@@ -3,7 +3,6 @@ import './Navbar.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useDebounce from '../hooks/useDebounce';
-// import useSingleData from '../hooks/useSingleData';
 
 function Navbar () {
 
@@ -17,12 +16,9 @@ function Navbar () {
     function handleInput (id) {
         navigator(`poke/${id}`)
     }
-    // console.log("single data is", singleData)
     
     async function downloadByName () {
-        // console.log("search Term is", searchTerm)
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${(searchTerm) ? searchTerm : "charmander"}`)
-        // console.log("response of search card", response)
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${(searchTerm) ? searchTerm : ""}`)
         setSingleData(response.data)
     }
 
@@ -43,7 +39,7 @@ function Navbar () {
                     <div className="auto-result" style={{display: (isAutoCompleteVisible) ? 'block': 'none'}}>
                         {singleData && <p key={singleData.id}
                          onMouseDown={() => handleInput(singleData.id)} >{singleData.name}</p>}
-                        <p>Search Term is {searchTerm}</p>
+                        <p className='input-color'>Searching for... {searchTerm}</p>
                     </div>
                 </div>
                 

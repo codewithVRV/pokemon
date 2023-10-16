@@ -13,7 +13,15 @@
     height: 3rem;
     border-radius: 5px;
     margin: 3rem 0;
+    font-size: 1.2rem;
+    padding-left: 1rem;
+    letter-spacing: 2px;
 
+}
+
+.input-color {
+    color: white;
+    letter-spacing: 3px;
 }
 
 .input-wrapper input::placeholder {
@@ -24,7 +32,7 @@
 .auto-result {
     display: none;
     position: absolute;
-    background-color: gray;
+    background-color: #0897b4;
     width: 30rem;
     margin-left: 2px;
     margin-top: -47px;
@@ -40,4 +48,17 @@
 .auto-result p {
     padding-left: 1rem;
     font-size: 1.4rem;
+}
+
+
+/* media query */
+
+@media screen  and (max-width: 576px) {
+    .input-wrapper input {
+        width: 18rem;
+        height: 3rem;
+    }
+    .auto-result {
+        width: 18rem;
+    }
 }
