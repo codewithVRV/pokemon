@@ -17,12 +17,12 @@ function Navbar () {
     function handleInput (id) {
         navigator(`poke/${id}`)
     }
-    console.log("single data is", singleData)
+    // console.log("single data is", singleData)
     
     async function downloadByName () {
-        console.log("search Term is", searchTerm)
+        // console.log("search Term is", searchTerm)
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${(searchTerm) ? searchTerm : "charmander"}`)
-        console.log("response of search card", response)
+        // console.log("response of search card", response)
         setSingleData(response.data)
     }
 

@@ -4,19 +4,17 @@ import { useEffect, useState } from "react"
 function usePokemonData () {
     const [pokeData, setPokeData] = useState([])
     const [singleData, setSingleData] = useState([])
+    const [nextUrl, setNextUrl] = useState("")
 
     async function downloadAllPokemon() {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon')
         setPokeData(response.data.results) // first method
-        
+        setNextUrl(response.data.next)
 
     }
-    // console.log("pokedata is ", pokeData)
-    // async function singlePokemon () {
-    //     const urls = pokeData.map((data) => data.url)
-    //     const response = await axios.all((urls.map(url => axios.get(url))))
-    //     setSingleData([...response]) // second method
-    // }
+  
+    
+
 
     async function singlePokemon () {
         const urls = pokeData.map((data) => data.name)
@@ -31,6 +29,6 @@ function usePokemonData () {
         
     }, [pokeData])
 
-    return [singleData]
+    return [singleData, nextUrl]
 }
 export default usePokemonData;
